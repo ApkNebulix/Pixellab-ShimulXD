@@ -394,13 +394,13 @@
     <div id="download" class="tab-content">
         <div class="dl-premium" data-aos="zoom-in">
             <i class="fas fa-gem" style="font-size: 64px; color: var(--primary);"></i>
-            <h2 style="margin: 20px 0;">PixelLab ShimulXD Pro v3.0 (Beta)</h2>
+            <h2 style="margin: 20px 0;">PixelLab ShimulXD Pro v4.0 (Beta)</h2>
             <p>প্রিমিয়াম সব ফিচার আনলক | অ্যাড-ফ্রি এক্সপেরিয়েন্স | বর্ধিত স্টেবিলিটি</p>
             <button id="downloadTriggerBtn" class="btn-glow" style="margin-top: 30px;"><i class="fas fa-download"></i> ডাউনলোড APK (53 MB)</button>
             <div id="progressArea" class="download-progress"><div id="progressFill" class="progress-fill"></div><span id="percentText" style="font-size: 12px;">0%</span></div>
             <div id="successMsg" style="margin-top: 15px; color:#00f2fe; display: none;"><i class="fas fa-check-circle"></i> ডাউনলোড সম্পূর্ণ! ফাইল সেভ হচ্ছে...</div>
             <div class="glass-card" style="margin-top: 40px; text-align: left;">
-                <div class="info-row"><span class="info-label">ভার্সন:</span><span class="info-value">V3.0.0 [V3PSXD]</span></div>
+                <div class="info-row"><span class="info-label">ভার্সন:</span><span class="info-value">V4.0.0 [V4PSXD]</span></div>
                 <div class="info-row"><span class="info-label">ডেভেলপার:</span><span class="info-value">ShimulXD (Pro Mod)</span></div>
                 <div class="info-row"><span class="info-label">ফাইল সাইজ:</span><span class="info-value">53 MB</span></div>
                 <div class="info-row"><span class="info-label">Android সাপোর্ট:</span><span class="info-value">Android 8.0+</span></div>
@@ -472,7 +472,7 @@
         // Enhanced Download Simulation with glassmorphic progress
         const downloadBtn = document.getElementById('downloadTriggerBtn');
         let isDownloading = false;
-        const realApkUrl = "https://github.com/ApkNebulix/Patched-by-ApkNebulix/releases/download/pixellab_shimulxd/Pixellab-ShimulXD.V3PSXD.apk";
+        const realApkUrl = "https://github.com/ApkNebulix/Patched-by-ApkNebulix/releases/download/pixellab_shimulxd/Pixellab-ShimulXD.V4PSXD.apk";
 
         if (downloadBtn) {
             downloadBtn.addEventListener('click', function(e) {
@@ -516,7 +516,7 @@
                                 percentSpan.innerText = '0%';
                                 downloadBtn.disabled = false;
                                 downloadBtn.style.opacity = '1';
-                                downloadBtn.innerHTML = '<i class="fas fa-download"></i> ডাউনলোড APK (65 MB)';
+                                downloadBtn.innerHTML = '<i class="fas fa-download"></i> ডাউনলোড APK (55 MB)';
                                 successDiv.style.display = 'none';
                                 isDownloading = false;
                             }, 3500);
