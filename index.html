@@ -3,442 +3,535 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PixelLab ShimulXD Pro | Next-Gen Graphics</title>
-    
-    <!-- External Resources -->
+    <title>PixelLab ShimulXD Pro | প্রফেশনাল গ্রাফিক্স স্যুট</title>
+    <!-- Font Awesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Scroll Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        :root {
-            --primary: #00f2fe;
-            --secondary: #4facfe;
-            --accent: #ff007a;
-            --dark-bg: #030712;
-            --card-bg: rgba(17, 24, 39, 0.7);
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text: #f3f4f6;
-            --text-dim: #9ca3af;
-            --neon-glow: 0 0 20px rgba(0, 242, 254, 0.3);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
         }
 
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Outfit', 'Hind Siliguri', sans-serif;
-            scroll-behavior: smooth;
-            -webkit-tap-highlight-color: transparent;
+        :root {
+            --primary: #00f2fe;
+            --primary-dark: #00c2d6;
+            --secondary: #4facfe;
+            --accent: #ff007a;
+            --accent-soft: #ff3b6f;
+            --dark-bg: #0a0c15;
+            --glass-bg: rgba(15, 25, 45, 0.55);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --card-glass: rgba(20, 30, 55, 0.65);
+            --text-light: #f1f5f9;
+            --text-dim: #9ca8c2;
+            --glow-neon: 0 0 18px rgba(0, 242, 254, 0.4);
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: var(--text);
+            background: radial-gradient(circle at 10% 20%, #0b1120, #03050b);
+            color: var(--text-light);
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 122, 0.05) 0%, transparent 40%);
-        }
-
-        /* --- Custom Animations --- */
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); filter: blur(10px); }
-            to { opacity: 1; transform: scale(1); filter: blur(0); }
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes floating {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
-        }
-
-        @keyframes progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        /* --- Header Section --- */
-        .hero {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
             position: relative;
         }
 
-        .logo-wrapper {
-            position: relative;
-            animation: floating 4s ease-in-out infinite;
-            margin-bottom: 30px;
+        /* Animated grain overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.3;
         }
 
-        .main-logo {
-            width: 140px; height: 140px;
-            border-radius: 40px;
-            border: 4px solid var(--glass-border);
-            padding: 10px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            box-shadow: var(--neon-glow);
-        }
-
-        .badge-premium {
-            position: absolute;
-            bottom: -10px; right: -10px;
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 800;
-            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            color: var(--text-dim);
-            max-width: 500px;
-            line-height: 1.6;
-        }
-
-        /* --- Floating Navigation --- */
+        /* Floating glass navigation */
         .glass-nav {
             position: fixed;
-            bottom: 25px; left: 50%;
+            bottom: 28px;
+            left: 50%;
             transform: translateX(-50%);
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 8px 15px;
-            border-radius: 30px;
+            background: rgba(10, 18, 28, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            padding: 8px 20px;
+            border-radius: 60px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         .nav-item {
             color: var(--text-dim);
             text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 25px;
-            font-size: 14px;
+            padding: 10px 22px;
+            border-radius: 40px;
             font-weight: 600;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex; align-items: center; gap: 8px;
+            font-size: 0.9rem;
+            transition: 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
         }
 
-        .nav-item.active {
-            background: var(--primary);
-            color: #000;
-            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
-        }
-
-        /* --- Sections Style --- */
-        .content-section {
-            padding: 80px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            display: none;
-        }
-
-        .content-section.active { display: block; animation: fadeInScale 0.6s ease; }
-
-        .section-header {
-            margin-bottom: 40px;
-            border-left: 5px solid var(--primary);
-            padding-left: 20px;
-        }
-
-        /* --- Feature Cards --- */
-        .feature-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 25px;
-            position: relative;
-            overflow: hidden;
-            transition: 0.4s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            background: rgba(0, 242, 254, 0.05);
-        }
-
-        .icon-box {
-            width: 55px; height: 55px;
+        .nav-item i { font-size: 1.2rem; }
+        .nav-item.active, .nav-item:hover {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 18px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; color: #000;
-            margin-bottom: 20px;
+            color: #030712;
+            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.5);
         }
 
-        .feature-card h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; }
-        .feature-card p { color: var(--text-dim); font-size: 14px; line-height: 1.5; }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
 
-        /* --- Advanced Info Table --- */
-        .info-grid {
-            background: var(--glass);
-            border-radius: 20px;
+        .logo-glow {
+            width: 140px;
+            height: 140px;
+            border-radius: 38px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--glass-border);
+            padding: 12px;
+            margin-bottom: 30px;
+            box-shadow: var(--glow-neon);
+            animation: floatLogo 5s infinite ease;
+        }
+
+        @keyframes floatLogo {
+            0%,100%{ transform: translateY(0); }
+            50%{ transform: translateY(-12px); }
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--primary), #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-glow {
+            background: linear-gradient(95deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 800;
+            color: #0a0f1f;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 28px;
+            transition: 0.3s;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-glow:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 28px rgba(0,242,254,0.5);
+        }
+
+        /* Tab Contents */
+        .tab-content {
+            display: none;
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 40px 24px;
+            animation: fadeSlide 0.5s ease;
+        }
+
+        .tab-content.active-tab {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Beta alert glass */
+        .beta-alert {
+            background: rgba(255, 0, 122, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--accent);
+            border-radius: 60px;
+            padding: 12px 24px;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 40px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ff9bc0;
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 38px;
+            padding: 32px;
+            margin-bottom: 40px;
+            transition: all 0.3s;
+        }
+
+        .glass-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 28px;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* feature item grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 18px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 28px;
             padding: 20px;
-            margin-top: 20px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0,242,254,0.1);
+            transition: 0.25s;
         }
 
-        .info-row {
-            display: flex; justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--glass-border);
+        .feature-item:hover {
+            border-color: var(--primary);
+            background: rgba(0,242,254,0.05);
+            transform: translateY(-4px);
         }
 
-        .info-row:last-child { border: none; }
-        .info-label { color: var(--text-dim); font-weight: 500; }
-        .info-value { color: var(--primary); font-weight: 700; }
+        .feature-icon {
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(145deg, var(--primary-dark), var(--primary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #000;
+            flex-shrink: 0;
+        }
 
-        /* --- Download Area --- */
-        .dl-card {
-            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
-            border-radius: 35px;
-            padding: 40px;
+        .feature-item strong {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+
+        .feature-item p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Download card premium */
+        .dl-premium {
+            background: linear-gradient(135deg, rgba(0,242,254,0.1), rgba(79,172,254,0.05));
+            border-radius: 48px;
+            padding: 48px 32px;
             text-align: center;
             border: 1px solid var(--primary);
         }
 
-        .btn-main {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px 45px;
-            background: var(--primary);
-            color: #000;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.3);
-            transition: 0.4s;
-            margin: 20px 0;
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .btn-main:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(0, 242, 254, 0.5);
+        .download-progress {
+            width: 100%;
+            height: 6px;
+            background: #1e293b;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+            display: none;
         }
 
-        /* --- Social Integration --- */
-        .social-circle-grid {
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .social-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
+            margin-top: 40px;
         }
 
-        .circle-link {
-            width: 60px; height: 60px;
+        .social-circle {
+            width: 75px;
+            height: 75px;
+            background: rgba(255,255,255,0.05);
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; color: white;
-            text-decoration: none;
-            background: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
             border: 1px solid var(--glass-border);
-            transition: 0.4s;
+            transition: 0.3s;
+            color: white;
+            text-decoration: none;
         }
 
-        .circle-link:hover { transform: rotate(360deg) scale(1.2); }
-        .tg:hover { background: #0088cc; }
-        .fb:hover { background: #1877f2; }
-        .yt:hover { background: #ff0000; }
+        .social-circle:hover {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--primary);
+            color: black;
+            box-shadow: 0 0 20px var(--primary);
+        }
 
-        /* Mobile Optimization */
-        @media (max-width: 600px) {
+        @media (max-width: 680px) {
             .hero h1 { font-size: 2.2rem; }
-            .nav-item span { display: none; }
-            .nav-item { padding: 12px; }
-            .btn-main { width: 100%; justify-content: center; }
+            .glass-nav span { display: none; }
+            .nav-item { padding: 10px 14px; }
+            .feature-grid { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Header / Hero Section -->
-    <header class="hero" id="home">
-        <div class="logo-wrapper">
-            <img src="https://raw.githubusercontent.com/ApkNebulix/Daroid-AN/refs/heads/main/Img/PixellabShimulXD/pixellabshimulxd_logo.png" alt="Logo" class="main-logo">
-            <div class="badge-premium">PRO MOD</div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="logo-glow" data-aos="zoom-in">
+            <img src="https://raw.githubusercontent.com/ApkNebulix/Daroid-AN/refs/heads/main/Img/PixellabShimulXD/pixellabshimulxd_logo.png" alt="PixelLab ShimulXD" style="width:100%; border-radius: 28px;">
         </div>
-        <h1>PixelLab ShimulXD</h1>
-        <p>মোবাইল গ্রাফিক্স ডিজাইনের নতুন দিগন্ত। এডভান্স প্রিমিয়াম ফিচার এখন আপনার হাতের মুঠোয়।</p>
-        
-        <div style="margin-top: 30px; display: flex; gap: 15px;">
-            <a href="#features" class="btn-main" onclick="showTab('features')">শুরু করা যাক</a>
-        </div>
-    </header>
+        <h1 data-aos="fade-up">PixelLab ShimulXD <span style="color:var(--primary);">Pro</span></h1>
+        <p data-aos="fade-up" data-aos-delay="100">আপনার সৃজনশীলতাকে নতুন মাত্রা দিতে «Pixellab - ShimulXD» নিয়ে এলো প্রফেশনাল ডিজাইনের এক অনন্য সমাধান। অ্যাডভান্স টুলস, গ্লাসমরফিজম UI ও শক্তিশালী এডিটিং সিস্টেম।</p>
+        <button class="btn-glow" onclick="switchTab('features')" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-rocket"></i> এক্সপ্লোর ফিচার</button>
+    </section>
 
     <!-- Floating Navigation -->
-    <nav class="glass-nav">
-        <a href="#home" class="nav-item active" onclick="showTab('home', event)">
-            <i class="fas fa-home"></i> <span>হোম</span>
-        </a>
-        <a href="#features" class="nav-item" onclick="showTab('features', event)">
-            <i class="fas fa-layer-group"></i> <span>ফিচার</span>
-        </a>
-        <a href="#download" class="nav-item" onclick="showTab('download', event)">
-            <i class="fas fa-download"></i> <span>ডাউনলোড</span>
-        </a>
-        <a href="#contact" class="nav-item" onclick="showTab('contact', event)">
-            <i class="fas fa-hashtag"></i> <span>কন্টাক্ট</span>
-        </a>
-    </nav>
+    <div class="glass-nav">
+        <a href="#" class="nav-item active" data-tab="home" onclick="switchTab('home')"><i class="fas fa-home"></i><span>হোম</span></a>
+        <a href="#" class="nav-item" data-tab="features" onclick="switchTab('features')"><i class="fas fa-crown"></i><span>ফিচার</span></a>
+        <a href="#" class="nav-item" data-tab="download" onclick="switchTab('download')"><i class="fas fa-download"></i><span>ডাউনলোড</span></a>
+        <a href="#" class="nav-item" data-tab="contact" onclick="switchTab('contact')"><i class="fas fa-users"></i><span>কমিউনিটি</span></a>
+    </div>
 
-    <!-- Features Section -->
-    <section id="features" class="content-section">
-        <div class="section-header">
-            <h2 style="font-size: 2rem;">এক্সক্লুসিভ ফিচারসমূহ</h2>
-            <p color="var(--text-dim)">ডিজাইনারদের জন্য প্রয়োজনীয় সব টুলস এখন এক অ্যাপে</p>
-        </div>
-
-        <div class="feature-container">
-            <div class="feature-card">
-                <div class="icon-box"><i class="fas fa-wand-magic-sparkles"></i></div>
-                <h3>স্মার্ট বিজি রিমুভার</h3>
-                <p>কোনো ঝামেলা ছাড়াই ইমেজের ব্যাকগ্রাউন্ড রিমুভ করার জন্য এতে যুক্ত করা হয়েছে পাওয়ারফুল AI টুলস।</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon-box"><i class="fas fa-font"></i></div>
-                <h3>অটো ফন্ট ফিল্টার</h3>
-                <p>ZIP ফাইল সরাসরি আনজিপ করে অটোমেটিক .otf এবং .ttf ফন্ট খুঁজে ইম্পোর্ট করবে। আপনার "fonts" ফোল্ডারের সব ফন্ট এখন নিমিষেই এড হবে।</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon-box"><i class="fas fa-file-export"></i></div>
-                <h3>এডভান্স এক্সপোর্ট</h3>
-                <p>JPG, PNG, WebP এবং হাই-রেজুলেশন Ultra-HD PDF ফরম্যাটে আপনার ডিজাইন সেভ করার প্রিমিয়াম সুবিধা।</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon-box"><i class="fas fa-calendar-alt"></i></div>
-                <h3>ডাইনামিক টাইম-স্ট্যাম্প</h3>
-                <p>ইমেজে বর্তমান তারিখ ও সময় যুক্ত করার জন্য নতুন ফরম্যাট: <i>Monday, 30 March 2026, 06:16 PM</i></p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon-box"><i class="fas fa-droplet"></i></div>
-                <h3>ব্লার ও কাস্টমাইজেশন</h3>
-                <p>ছবিতে প্রফেশনাল ব্লার ইফেক্ট এবং ইমেজের ভেতরে নিজের কাস্টম নাম বা ওয়াটারমার্ক যুক্ত করার অপশন।</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="icon-box"><i class="fas fa-cloud-arrow-down"></i></div>
-                <h3>সরাসরি ডাউনলোড টুলস</h3>
-                <p>ইন্টারনেট থেকে সরাসরি ইমেজ ডাউনলোড করে অ্যাপে ইম্পোর্ট করার ফিচার যুক্ত করা হয়েছে।</p>
+    <!-- Features Tab (Complete with all given items + glassmorphism) -->
+    <div id="features" class="tab-content">
+        <div class="beta-alert" data-aos="fade-down">🚀 এটি একটি স্পেশাল Beta সংস্করণ! সর্বাধুনিক ফিচারসমূহ যুক্ত হয়েছে।</div>
+        
+        <div class="glass-card" data-aos="fade-up">
+            <h3><i class="fas fa-fire"></i> প্রিমিয়াম টুলস ও আপডেট</h3>
+            <div class="feature-grid">
+                <!-- Premium UI Design -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-ad"></i></div><div><strong>Premium UI Design</strong><p>পিক্সল্যাব এর ইউজার ইন্টারফেস (UI) এখন আরও আধুনিক ও প্রিমিয়াম করা হয়েছে, যা আপনার কাজকে করবে আরও সহজ এবং আকর্ষণীয়।</p></div></div>
+                <!-- Text Effect Bug Fixed -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-tools"></i></div><div><strong>Text Effect Bug Fixed</strong><p>টেক্সট Emboss এবং 3D Text ইফেক্টের আগের সব বাগ বা সমস্যাগুলো ফিক্স করা হয়েছে। এখন কোনো ঝামেলা ছাড়াই স্মুথলি ব্যবহার করুন।</p></div></div>
+                <!-- Magic BG Remover -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-eraser"></i></div><div><strong>Magic BG Remover</strong><p>এক ক্লিকেই ছবির ব্যাকগ্রাউন্ড রিমুভ করার শক্তিশালী টুলস এবং ম্যানুয়ালি ছবির ব্যাকগ্রাউন্ড রিমুভ করার সিস্টেম যুক্ত।</p></div></div>
+                <!-- Advance Image Eraser -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-magic"></i></div><div><strong>Advance Image Eraser</strong><p>হুবহু ফটোশপের মতো অ্যাডভান্স ইরেজার টুল। Brush Size, Hardness এবং Finger Offset কন্ট্রোল করে নিখুঁতভাবে ছবির অংশ মুছুন।</p></div></div>
+                <!-- Smart Font Manager -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-font"></i></div><div><strong>Smart Font Manager</strong><p>সরাসরি ZIP ফাইল আনজিপ করে ফন্ট ফিল্টার এবং সাব-ফোল্ডার থেকে অটোমেটিক .otf ও .ttf ফন্ট ইম্পোর্ট করার সুবিধা।</p></div></div>
+                <!-- Ultra HD Export -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-file-export"></i></div><div><strong>Ultra HD & Multi-Format Export</strong><p>সর্বোচ্চ হাই-কোয়ালিটিতে JPG, PNG, WebP এবং প্রফেশনাল PDF ফরম্যাটে ইমেজ সেভ করার সুবিধা।</p></div></div>
+                <!-- Pro Image Blur -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-low-vision"></i></div><div><strong>Pro Image Blur</strong><p>ছবির নির্দিষ্ট অংশ বা পুরো ছবিকে প্রয়োজনমতো ব্লার করার নতুন ফিচার।</p></div></div>
+                <!-- Custom Branding -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-user-tag"></i></div><div><strong>Custom Branding</strong><p>ডিজাইনের মধ্যে নিজের নাম বা কাস্টম টেক্সট যুক্ত করার সহজ অপশন।</p></div></div>
+                <!-- Real-time Timestamp -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-calendar-alt"></i></div><div><strong>Real-time Timestamp</strong><p>নতুন স্টাইলিশ ফরম্যাটে (Day, Date, Time) অটোমেটিক সময় যুক্ত করার সুবিধা।</p></div></div>
+                <!-- PLP Project Search -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-search"></i></div><div><strong>PLP Project Search</strong><p>PLP ব্রাউজার থেকে আপনার পছন্দের প্রজেক্টটি দ্রুত খুঁজে পেতে সার্চ অপশন যুক্ত করা হয়েছে।</p></div></div>
+                <!-- Extra : Dynamic Glass Effects -->
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-glass-cheers"></i></div><div><strong>Glassmorphism Engine</strong><p>ডিজাইনে প্রিমিয়াম গ্লাস ইফেক্ট, ব্লার, ব্যাকড্রপ ফিল্টার সমন্বিত UI উপাদান।</p></div></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-layer-group"></i></div><div><strong>AI Shape Generator</strong><p>অটো শেপ জেনারেটর ও প্রিমেড গ্রেডিয়েন্ট প্রিসেটস, যা ডিজাইনকে করে তোলে দারুন।</p></div></div>
             </div>
         </div>
-    </section>
+        <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+            <h3><i class="fas fa-chart-line"></i> উন্নত কার্যক্ষমতা</h3>
+            <p style="color:var(--text-dim);">PixelLab ShimulXD এখন দ্রুততর রেন্ডার ইঞ্জিন, কম মেমোরি ব্যবহার ও একসাথে মাল্টি-লেয়ার এডিটিং সাপোর্ট করে। পেশাদার ডিজাইনারদের জন্য কাটিং-এজ টুলস।</p>
+        </div>
+    </div>
 
-    <!-- Download Section -->
-    <section id="download" class="content-section">
-        <div class="dl-card">
-            <i class="fas fa-box-open" style="font-size: 60px; color: var(--primary); margin-bottom: 20px;"></i>
-            <h2>প্রিমিয়াম ভার্সনটি পান</h2>
-            <p>নিচের লিঙ্কে ক্লিক করে সরাসরি ডাউনলোড শুরু করুন। এটি একটি সুরক্ষিত ও মোডেড ভার্সন।</p>
-            
-            <a href="https://github.com/ApkNebulix/Patched-by-ApkNebulix/releases/download/pixellab_shimulxd/PixellabShimulXD_V2PSXD.apk" class="btn-main">
-                <i class="fas fa-download"></i> Download APK (Latest)
-            </a>
-
-            <div class="info-grid">
-                <div class="info-row"><span class="info-label">ভার্সন:</span> <span class="info-value">v2.0.0 Beta[V2PSXD]</span></div>
-                <div class="info-row"><span class="info-label">রি-ডেভেলপার:</span> <span class="info-value">ShimulXD</span></div>
-                <div class="info-row"><span class="info-label">ফাইলের সাইজ:</span> <span class="info-value">42 MB</span></div>
-                <div class="info-row"><span class="info-label">সাপোর্ট:</span> <span class="info-value">Android 6.0+</span></div>
+    <!-- Download Tab -->
+    <div id="download" class="tab-content">
+        <div class="dl-premium" data-aos="zoom-in">
+            <i class="fas fa-gem" style="font-size: 64px; color: var(--primary);"></i>
+            <h2 style="margin: 20px 0;">PixelLab ShimulXD Pro v3.0 (Beta)</h2>
+            <p>প্রিমিয়াম সব ফিচার আনলক | অ্যাড-ফ্রি এক্সপেরিয়েন্স | বর্ধিত স্টেবিলিটি</p>
+            <button id="downloadTriggerBtn" class="btn-glow" style="margin-top: 30px;"><i class="fas fa-download"></i> ডাউনলোড APK (53 MB)</button>
+            <div id="progressArea" class="download-progress"><div id="progressFill" class="progress-fill"></div><span id="percentText" style="font-size: 12px;">0%</span></div>
+            <div id="successMsg" style="margin-top: 15px; color:#00f2fe; display: none;"><i class="fas fa-check-circle"></i> ডাউনলোড সম্পূর্ণ! ফাইল সেভ হচ্ছে...</div>
+            <div class="glass-card" style="margin-top: 40px; text-align: left;">
+                <div class="info-row"><span class="info-label">ভার্সন:</span><span class="info-value">V3.0.0 [V3PSXD]</span></div>
+                <div class="info-row"><span class="info-label">ডেভেলপার:</span><span class="info-value">ShimulXD (Pro Mod)</span></div>
+                <div class="info-row"><span class="info-label">ফাইল সাইজ:</span><span class="info-value">53 MB</span></div>
+                <div class="info-row"><span class="info-label">Android সাপোর্ট:</span><span class="info-value">Android 8.0+</span></div>
+                <div class="info-row"><span class="info-label">লাইসেন্স:</span><span class="info-value">প্রিমিয়াম আনলকড</span></div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="content-section">
-        <div class="section-header" style="text-align: center; border: none;">
-            <h2>কমিউনিটিতে যোগ দিন</h2>
-            <p>যেকোনো সমস্যার সমাধান বা নতুন আপডেট পেতে আমাদের সাথে থাকুন</p>
-        </div>
-
-        <div class="social-circle-grid">
-            <a href="https://t.me/PixellabShimulXD" class="circle-link tg"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://facebook.com/groups/1493021585672006/" class="circle-link fb"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@ShimulXDBD" class="circle-link yt"><i class="fab fa-youtube"></i></a>
-            <a href="https://t.me/ShimulXD" class="circle-link tg"><i class="fas fa-headset"></i></a>
-        </div>
-
-        <div style="margin-top: 50px; text-align: center; padding: 30px; border-top: 1px solid var(--glass-border);">
-            <p style="color: var(--text-dim); font-size: 14px;">Modify with ❤️ by ShimulXD</p>
-            <div style="margin-top: 10px; color: var(--primary); font-size: 12px; letter-spacing: 2px;">
-                #PIXELLABSHIMULXD #SHIMULXDMODDER
+    <!-- Contact / Community Tab -->
+    <div id="contact" class="tab-content">
+        <div class="glass-card" style="text-align: center;" data-aos="fade-up">
+            <h3><i class="fas fa-headset"></i> কমিউনিটিতে যোগ দিন</h3>
+            <p style="margin-bottom: 35px;">আপডেট, টিউটোরিয়াল এবং ডিজাইন শেয়ার করতে আমাদের সোশ্যাল হাবের সাথে যুক্ত থাকুন।</p>
+            <div class="social-grid">
+                <a href="https://t.me/PixellabShimulXD" class="social-circle"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://facebook.com/groups/1493021585672006/" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@ShimulXDBD" class="social-circle"><i class="fab fa-youtube"></i></a>
+                <a href="https://t.me/ShimulXD" class="social-circle"><i class="fas fa-headset"></i></a>
+            </div>
+            <div style="margin-top: 50px; border-top: 1px solid var(--glass-border); padding-top: 30px;">
+                <p style="color:var(--primary);">© 2026 PixelLab ShimulXD — মোবাইল গ্রাফিক্সের নতুন দিগন্ত</p>
+                <p style="font-size: 12px;">#ShimulXDModder #PixelLabPro</p>
             </div>
         </div>
-    </section>
+    </div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        function showTab(tabId, event) {
-            // Hide hero if not home
-            if(tabId !== 'home') {
-                document.getElementById('home').style.display = 'none';
-            } else {
-                document.getElementById('home').style.display = 'flex';
-            }
+        AOS.init({ duration: 800, once: true, offset: 20 });
 
-            // Hide all sections
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(s => s.classList.remove('active'));
-
-            // Show target section
-            if(tabId !== 'home') {
-                const target = document.getElementById(tabId);
-                target.classList.add('active');
-            }
-
-            // Update Nav Active State
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => item.classList.remove('active'));
+        // Tab Switching Logic with glass active state
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
+            const activeTab = document.getElementById(tabId);
+            if(activeTab) activeTab.classList.add('active-tab');
             
-            if(event) {
-                event.currentTarget.classList.add('active');
-            } else {
-                document.querySelector(`[href="#${tabId}"]`).classList.add('active');
-            }
+            // Update nav active style
+            document.querySelectorAll('.nav-item').forEach(link => link.classList.remove('active'));
+            const activeNav = Array.from(document.querySelectorAll('.nav-item')).find(link => link.getAttribute('data-tab') === tabId);
+            if(activeNav) activeNav.classList.add('active');
             
-            window.scrollTo(0, 0);
+            // Special handling for home section visibility
+            const heroSection = document.getElementById('home');
+            if(tabId === 'home') {
+                heroSection.style.display = 'flex';
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active-tab'));
+            } else {
+                heroSection.style.display = 'none';
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Initialize view
+        // Initially show home, but ensure features etc hidden
         window.onload = () => {
-            const hash = window.location.hash.replace('#', '');
-            if(hash && hash !== 'home') {
-                showTab(hash);
+            document.getElementById('home').style.display = 'flex';
+            document.getElementById('features').classList.remove('active-tab');
+            document.getElementById('download').classList.remove('active-tab');
+            document.getElementById('contact').classList.remove('active-tab');
+            // default active nav is home
+            const hash = window.location.hash.substring(1);
+            if (hash === 'features' || hash === 'download' || hash === 'contact') {
+                switchTab(hash);
+            } else {
+                switchTab('home');
             }
+        };
+
+        // Enhanced Download Simulation with glassmorphic progress
+        const downloadBtn = document.getElementById('downloadTriggerBtn');
+        let isDownloading = false;
+        const realApkUrl = "https://github.com/ApkNebulix/Patched-by-ApkNebulix/releases/download/pixellab_shimulxd/Pixellab-ShimulXD.V3PSXD.apk";
+
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function(e) {
+                if (isDownloading) return;
+                const progressDiv = document.getElementById('progressArea');
+                const fill = document.getElementById('progressFill');
+                const percentSpan = document.getElementById('percentText');
+                const successDiv = document.getElementById('successMsg');
+                
+                progressDiv.style.display = 'block';
+                successDiv.style.display = 'none';
+                let progress = 0;
+                isDownloading = true;
+                downloadBtn.disabled = true;
+                downloadBtn.style.opacity = '0.6';
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> প্রস্তুতি নিচ্ছে...';
+                
+                const interval = setInterval(() => {
+                    if (progress < 92) {
+                        let inc = Math.floor(Math.random() * 9) + 3;
+                        progress = Math.min(progress + inc, 92);
+                        fill.style.width = progress + '%';
+                        percentSpan.innerText = Math.floor(progress) + '%';
+                    } else if (progress >= 92 && progress < 100) {
+                        progress = 100;
+                        fill.style.width = '100%';
+                        percentSpan.innerText = '100%';
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            successDiv.style.display = 'block';
+                            // Trigger actual download
+                            const link = document.createElement('a');
+                            link.href = realApkUrl;
+                            link.download = 'PixelLab_ShimulXD_Pro.apk';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            setTimeout(() => {
+                                progressDiv.style.display = 'none';
+                                fill.style.width = '0%';
+                                percentSpan.innerText = '0%';
+                                downloadBtn.disabled = false;
+                                downloadBtn.style.opacity = '1';
+                                downloadBtn.innerHTML = '<i class="fas fa-download"></i> ডাউনলোড APK (65 MB)';
+                                successDiv.style.display = 'none';
+                                isDownloading = false;
+                            }, 3500);
+                        }, 400);
+                    }
+                }, 130);
+            });
         }
+
+        // Optional: manual url hash handling
+        window.addEventListener('hashchange', () => {
+            let hash = window.location.hash.slice(1);
+            if (hash === 'features' || hash === 'download' || hash === 'contact') switchTab(hash);
+            else switchTab('home');
+        });
     </script>
 </body>
 </html>
