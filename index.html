@@ -838,7 +838,7 @@ body::after {
     </div>
 
     <button id="downloadBtn" class="btn-dl ripple-btn">
-      <i class="fas fa-download"></i> ডাউনলোড APK (70 MB)
+      <i class="fas fa-download"></i> ডাউনলোড APK (100 MB)
     </button>
 
     <div class="progress-wrap" id="progressWrap">
@@ -1004,7 +1004,7 @@ const progressWrap=document.getElementById('progressWrap');
 const progressFill=document.getElementById('progressFill');
 const progressPercent=document.getElementById('progressPercent');
 const successMsg=document.getElementById('successMsg');
-const realUrl="https://github.com/ApkNebulix/Patched-by-ApkNebulix/releases/download/pixellab_shimulxd/Pixellab_ShimulXD.Full_Version.apk";
+const realUrl="https://tinyurl.com/psxd-premium-full";
 let isDownloading=false;
 
 if(downloadBtn){
@@ -1036,7 +1036,7 @@ if(downloadBtn){
             progressFill.style.width='0%';
             progressPercent.textContent='0%';
             downloadBtn.disabled=false;
-            downloadBtn.innerHTML='<i class="fas fa-download"></i> ডাউনলোড APK (70 MB)';
+            downloadBtn.innerHTML='<i class="fas fa-download"></i> ডাউনলোড APK (100 MB)';
             successMsg.style.display='none';
             isDownloading=false;
           },3500);
