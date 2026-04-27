@@ -838,7 +838,7 @@ body::after {
     </div>
 
     <button id="downloadBtn" class="btn-dl ripple-btn">
-      <i class="fas fa-download"></i> ডাউনলোড APK (100 MB)
+      <i class="fas fa-download"></i> ডাউনলোড APK (55 MB)
     </button>
 
     <div class="progress-wrap" id="progressWrap">
@@ -851,7 +851,7 @@ body::after {
   <div class="info-card">
     <div class="info-row"><span class="info-label"><i class="fas fa-tag" style="color:var(--c1);margin-right:8px;"></i>ভার্সন</span><span class="info-value">Full Version</span></div>
     <div class="info-row"><span class="info-label"><i class="fas fa-code" style="color:var(--c2);margin-right:8px;"></i>ডেভেলপার</span><span class="info-value">ShimulXD (Pro Mod)</span></div>
-    <div class="info-row"><span class="info-label"><i class="fas fa-database" style="color:var(--c3);margin-right:8px;"></i>ফাইল সাইজ</span><span class="info-value">100 MB</span></div>
+    <div class="info-row"><span class="info-label"><i class="fas fa-database" style="color:var(--c3);margin-right:8px;"></i>ফাইল সাইজ</span><span class="info-value">55 MB</span></div>
     <div class="info-row"><span class="info-label"><i class="fab fa-android" style="color:var(--c4);margin-right:8px;"></i>Android</span><span class="info-value">8.0 এবং উপরে</span></div>
     <div class="info-row"><span class="info-label"><i class="fas fa-unlock" style="color:var(--c5);margin-right:8px;"></i>লাইসেন্স</span><span class="info-value">প্রিমিয়াম আনলকড</span></div>
   </div>
@@ -1004,7 +1004,7 @@ const progressWrap=document.getElementById('progressWrap');
 const progressFill=document.getElementById('progressFill');
 const progressPercent=document.getElementById('progressPercent');
 const successMsg=document.getElementById('successMsg');
-const realUrl="https://tinyurl.com/psxd-premium-full";
+const realUrl="https://tinyurl.com/psxd-v7-xd";
 let isDownloading=false;
 
 if(downloadBtn){
@@ -1036,7 +1036,7 @@ if(downloadBtn){
             progressFill.style.width='0%';
             progressPercent.textContent='0%';
             downloadBtn.disabled=false;
-            downloadBtn.innerHTML='<i class="fas fa-download"></i> ডাউনলোড APK (100 MB)';
+            downloadBtn.innerHTML='<i class="fas fa-download"></i> ডাউনলোড APK (55 MB)';
             successMsg.style.display='none';
             isDownloading=false;
           },3500);
