@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap Link
+Sitemap: https://apknebulix.github.io/Pixellab-ShimulXD/sitemap.xml

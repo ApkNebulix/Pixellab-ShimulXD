@@ -1,0 +1,20 @@
+{
+  "name": "PixelLab ShimulXD Pro",
+  "short_name": "PSXD Pro",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#03040d",
+  "theme_color": "#00f5ff",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/ApkNebulix/Daroid-AN/refs/heads/main/Img/PixellabShimulXD/pixellab_shimulxd_logo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/ApkNebulix/Daroid-AN/refs/heads/main/Img/PixellabShimulXD/pixellab_shimulxd_logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
